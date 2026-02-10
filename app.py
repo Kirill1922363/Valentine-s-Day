@@ -10,13 +10,6 @@ def index():
 def valentine():
     return render_template("valentine.html")
 
-@app.route("/404.html")
-def error_404():
-    return render_template("404.html")
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template("404.html"), 404
 
 if __name__ == "__main__":
     import os
