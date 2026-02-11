@@ -16,9 +16,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffa5a5, #ff8e8e, #ff6b6b);
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffa5a5, #ffb3b3, #ff8e8e, #ff6b6b);
             background-size: 400% 400%;
-            animation: gradientFlow 15s ease infinite;
+            animation: gradientFlow 20s ease infinite;
             overflow: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -27,44 +27,48 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            animation: fadeIn 1.5s ease-out;
+            animation: fadeIn 2s ease-out;
         }
 
         .heart {
             position: relative;
-            width: 100px;
-            height: 100px;
-            margin: 30px auto;
+            width: 120px;
+            height: 120px;
+            margin: 40px auto;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             transform-style: preserve-3d;
-            animation: heartbeat 1.5s ease-in-out infinite, rotate3D 8s infinite linear;
-            filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.8));
+            animation: heartbeat 1.8s ease-in-out infinite, rotate3D 12s infinite linear;
+            filter: drop-shadow(0 0 50px rgba(255, 0, 0, 0.9)) 
+                    drop-shadow(0 0 30px rgba(255, 105, 180, 0.8));
         }
 
         .heart.explode {
-            animation: explodeHeart 0.8s cubic-bezier(.36,.07,.19,.97) forwards;
+            animation: explodeHeart 1s cubic-bezier(.36,.07,.19,.97) forwards;
         }
 
         .heart:hover {
-            transform: scale(1.3);
-            filter: drop-shadow(0 0 60px rgba(255, 0, 0, 1));
+            transform: scale(1.4) rotateY(180deg);
+            filter: drop-shadow(0 0 70px rgba(255, 0, 0, 1)) 
+                    drop-shadow(0 0 50px rgba(255, 105, 180, 1))
+                    drop-shadow(0 0 100px rgba(255, 0, 0, 0.5));
         }
 
         .heart::before,
         .heart::after {
             content: '';
             position: absolute;
-            width: 52px;
-            height: 80px;
-            border-radius: 50px 50px 0 0;
-            background: linear-gradient(135deg, #ff0000 0%, #ff6b6b 50%, #ff0000 100%);
+            width: 60px;
+            height: 95px;
+            border-radius: 60px 60px 0 0;
+            background: linear-gradient(135deg, #ff0000 0%, #ff3333 25%, #ff6b6b 50%, #ff3333 75%, #ff0000 100%);
             background-size: 200% 200%;
-            animation: heartPulse 3s ease-in-out infinite;
-            left: 50px;
+            animation: heartPulse 4s ease-in-out infinite;
+            left: 60px;
             transform: rotate(-45deg);
             transform-origin: 0 100%;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.9),
+                        inset 0 0 20px rgba(255, 255, 255, 0.3);
         }
 
         .heart::after {
@@ -75,12 +79,20 @@
 
         .message {
             color: white;
-            font-size: clamp(1.8em, 4vw, 2.5em);
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-            margin: 20px;
+            font-size: clamp(2em, 4.5vw, 3em);
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4),
+                         0 0 30px rgba(255, 255, 255, 0.5);
+            margin: 30px;
             opacity: 0;
-            animation: fadeInUp 2s ease-in-out forwards;
+            animation: fadeInUp 2.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
             font-weight: bold;
+            background: linear-gradient(45deg, #fff, #ffe0e0, #fff);
+            background-size: 200% 200%;
+            animation: fadeInUp 2.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
+                       textShine 3s ease-in-out infinite 2.5s;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .floating-hearts {
@@ -95,115 +107,146 @@
 
         .floating-heart {
             position: absolute;
-            font-size: clamp(15px, 3vw, 25px);
+            font-size: clamp(18px, 3vw, 30px);
             color: rgba(255, 255, 255, 0.9);
-            animation: float 8s linear infinite;
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+            animation: float 10s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7))
+                    drop-shadow(0 0 15px rgba(255, 105, 180, 0.5));
         }
 
         .sub-message {
             color: white;
-            font-size: clamp(1em, 2.5vw, 1.5em);
-            margin-top: 20px;
+            font-size: clamp(1.1em, 2.8vw, 1.7em);
+            margin-top: 25px;
             padding: 0 20px;
             opacity: 0;
-            animation: fadeInUp 2s ease-in-out 0.8s forwards;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+            animation: fadeInUp 2.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s forwards;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                         2px 2px 10px rgba(0, 0, 0, 0.3);
+            font-weight: 500;
         }
 
         .sparkle {
             position: absolute;
-            width: 8px;
-            height: 8px;
-            background: white;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, white 0%, #ff69b4 50%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
-            animation: sparkleAnim 1.5s ease-out forwards;
-            box-shadow: 0 0 10px white;
+            animation: sparkleAnim 2s ease-out forwards;
+            box-shadow: 0 0 15px white, 0 0 25px #ff69b4;
         }
 
         .mini-heart {
             position: absolute;
-            font-size: 24px;
+            font-size: 28px;
             color: #ff0000;
             pointer-events: none;
             opacity: 0;
             z-index: 10;
-            filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8));
+            filter: drop-shadow(0 0 10px rgba(255, 0, 0, 1))
+                    drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
         }
 
         .butterfly {
             position: absolute;
-            font-size: 28px;
+            font-size: 32px;
             pointer-events: none;
             transition: transform 0.3s ease;
             z-index: 2;
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7))
+                    drop-shadow(0 0 15px rgba(255, 182, 193, 0.8));
+            animation: butterflyShimmer 2s ease-in-out infinite;
         }
 
         .music-note {
             position: absolute;
-            font-size: 28px;
+            font-size: 32px;
             color: white;
             opacity: 0;
-            animation: floatNote 4s ease-out forwards;
-            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+            animation: floatNote 5s ease-out forwards;
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 1))
+                    drop-shadow(0 0 8px rgba(255, 182, 193, 0.8));
         }
 
         .glow {
             position: absolute;
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, rgba(255,182,193,0.5) 0%, rgba(255,182,193,0) 70%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,182,193,0.6) 0%, rgba(255,105,180,0.3) 40%, rgba(255,182,193,0) 70%);
             border-radius: 50%;
             pointer-events: none;
             transform: translate(-50%, -50%);
             z-index: 0;
             transition: all 0.3s ease;
+            animation: glowPulse 3s ease-in-out infinite;
         }
 
         .love-quote {
             position: fixed;
-            bottom: 30px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             color: white;
-            font-size: clamp(0.9em, 2vw, 1.1em);
+            font-size: clamp(1em, 2.2vw, 1.3em);
             opacity: 0;
-            animation: fadeIn 3s ease-in-out 2s forwards;
+            animation: fadeIn 4s ease-in-out 3s forwards;
             text-align: center;
             padding: 0 20px;
             font-style: italic;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.5),
+                         0 0 25px rgba(255, 255, 255, 0.3);
+            font-weight: 500;
         }
 
         .confetti {
             position: fixed;
-            width: 10px;
-            height: 10px;
-            background: white;
-            animation: confettiFall 3s linear forwards;
+            width: 12px;
+            height: 12px;
+            animation: confettiFall 4s linear forwards;
             opacity: 0;
+            filter: drop-shadow(0 0 5px currentColor);
+        }
+
+        .light-ray {
+            position: fixed;
+            width: 2px;
+            height: 100vh;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+            opacity: 0;
+            animation: lightRayAnim 3s ease-in-out infinite;
+            transform-origin: top;
         }
 
         @keyframes gradientFlow {
             0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 50% 25%; }
             50% { background-position: 100% 50%; }
+            75% { background-position: 50% 75%; }
         }
 
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.15); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.1); }
+            10% { transform: scale(1.2); }
+            20% { transform: scale(1); }
+            30% { transform: scale(1.15); }
+            40% { transform: scale(1); }
         }
 
         @keyframes rotate3D {
-            0% { transform: rotateY(0deg); }
-            100% { transform: rotateY(360deg); }
+            0% { transform: rotateY(0deg) rotateX(0deg); }
+            25% { transform: rotateY(90deg) rotateX(10deg); }
+            50% { transform: rotateY(180deg) rotateX(0deg); }
+            75% { transform: rotateY(270deg) rotateX(-10deg); }
+            100% { transform: rotateY(360deg) rotateX(0deg); }
         }
 
         @keyframes heartPulse {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes textShine {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
@@ -215,7 +258,10 @@
             }
             10% {
                 opacity: 1;
-                transform: translateY(90vh) rotate(36deg) scale(1);
+                transform: translateY(90vh) rotate(45deg) scale(1);
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(1.2);
             }
             90% {
                 opacity: 1;
@@ -234,11 +280,11 @@
         @keyframes fadeInUp {
             from { 
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px) scale(0.9);
             }
             to { 
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
@@ -249,7 +295,7 @@
             }
             50% {
                 opacity: 1;
-                transform: scale(1.5) rotate(180deg);
+                transform: scale(2) rotate(180deg);
             }
             100% {
                 transform: scale(0) rotate(360deg);
@@ -262,30 +308,30 @@
                 transform: translateY(0) rotate(0deg) scale(1);
                 opacity: 0;
             }
-            20% {
+            10% {
                 opacity: 1;
             }
-            80% {
+            90% {
                 opacity: 1;
             }
             100% {
-                transform: translateY(-150px) rotate(360deg) scale(0.5);
+                transform: translateY(-200px) rotate(720deg) scale(0.3);
                 opacity: 0;
             }
         }
 
         @keyframes explodeHeart {
             0% {
-                transform: scale(1);
+                transform: scale(1) rotate(0deg);
             }
             30% {
-                transform: scale(1.8);
+                transform: scale(2) rotate(20deg);
             }
             60% {
-                transform: scale(0.9);
+                transform: scale(0.8) rotate(-10deg);
             }
             100% {
-                transform: scale(1);
+                transform: scale(1) rotate(0deg);
             }
         }
 
@@ -306,25 +352,62 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(100vh) rotate(720deg);
+                transform: translateY(100vh) rotate(1080deg);
                 opacity: 0;
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes butterflyShimmer {
+            0%, 100% {
+                filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7))
+                        drop-shadow(0 0 15px rgba(255, 182, 193, 0.8));
+            }
+            50% {
+                filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1))
+                        drop-shadow(0 0 25px rgba(255, 105, 180, 1));
+            }
+        }
+
+        @keyframes lightRayAnim {
+            0% {
+                opacity: 0;
+                transform: translateX(0) rotate(0deg);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translateX(20px) rotate(2deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(0) rotate(0deg);
             }
         }
 
         @media (max-width: 600px) {
             .heart {
-                width: 80px;
-                height: 80px;
+                width: 90px;
+                height: 90px;
             }
 
             .heart::before,
             .heart::after {
-                width: 42px;
-                height: 65px;
+                width: 45px;
+                height: 72px;
             }
 
             .heart::before {
-                left: 40px;
+                left: 45px;
             }
         }
     </style>
@@ -340,9 +423,22 @@
     <div class="love-quote">"В жизни есть только одно счастье — любить и быть любимым" 💕</div>
 
     <script>
-        const heartEmojis = ['❤️', '💕', '💖', '💗', '💝', '💘', '💓', '💞'];
-        const musicNotes = ['Kaya', '♫', '♬', '♩', '🎵', '🎶'];
-        const butterflies = ['🦋', '🦋', '🌸'];
+        const heartEmojis = ['❤️', '💕', '💖', '💗', '💝', '💘', '💓', '💞', '💟', '❣️'];
+        const musicNotes = ['Kaya', '♫', '♬', '♩', '🎵', '🎶', '🎼'];
+        const butterflies = ['🦋', '🦋', '🌸', '🌺', '🌷'];
+
+        // Create light rays
+        function createLightRays() {
+            for (let i = 0; i < 8; i++) {
+                const ray = document.createElement('div');
+                ray.className = 'light-ray';
+                ray.style.left = (i * 12.5) + '%';
+                ray.style.animationDelay = (i * 0.4) + 's';
+                document.body.appendChild(ray);
+            }
+        }
+
+        createLightRays();
 
         function createFloatingHearts() {
             const container = document.querySelector('.floating-hearts');
@@ -353,28 +449,29 @@
             const startPos = Math.random() * 100;
             heart.style.left = startPos + 'vw';
             
-            const duration = 8 + Math.random() * 6;
+            const duration = 10 + Math.random() * 8;
             heart.style.animationDuration = duration + 's';
-            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.animationDelay = Math.random() * 3 + 's';
             
             container.appendChild(heart);
             
             setTimeout(() => {
                 heart.remove();
-            }, (duration + 2) * 1000);
+            }, (duration + 3) * 1000);
         }
 
         function createSparkle(x, y) {
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 5; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
-                sparkle.style.left = (x + (Math.random() - 0.5) * 30) + 'px';
-                sparkle.style.top = (y + (Math.random() - 0.5) * 30) + 'px';
+                sparkle.style.left = (x + (Math.random() - 0.5) * 50) + 'px';
+                sparkle.style.top = (y + (Math.random() - 0.5) * 50) + 'px';
+                sparkle.style.animationDelay = (i * 0.1) + 's';
                 document.body.appendChild(sparkle);
                 
                 setTimeout(() => {
                     sparkle.remove();
-                }, 1500);
+                }, 2000);
             }
         }
 
@@ -382,13 +479,14 @@
             const note = document.createElement('div');
             note.className = 'music-note';
             note.textContent = musicNotes[Math.floor(Math.random() * musicNotes.length)];
-            note.style.left = Math.random() * window.innerWidth + 'px';
+            note.style.left = (20 + Math.random() * 60) + '%';
             note.style.top = (window.innerHeight - 50) + 'px';
+            note.style.animationDelay = (Math.random() * 0.5) + 's';
             document.body.appendChild(note);
 
             setTimeout(() => {
                 note.remove();
-            }, 4000);
+            }, 5000);
         }
 
         function createButterfly() {
@@ -400,23 +498,26 @@
             document.body.appendChild(butterfly);
 
             let angle = 0;
-            const radius = 60 + Math.random() * 40;
+            const radius = 80 + Math.random() * 60;
             const centerX = parseFloat(butterfly.style.left);
             const centerY = parseFloat(butterfly.style.top);
-            const speed = 0.015 + Math.random() * 0.01;
+            const speed = 0.02 + Math.random() * 0.015;
 
             function animate() {
                 angle += speed;
-                const x = centerX + Math.cos(angle) * radius;
-                const y = centerY + Math.sin(angle) * radius;
+                const x = centerX + Math.cos(angle) * radius + Math.sin(angle * 3) * 30;
+                const y = centerY + Math.sin(angle) * radius + Math.cos(angle * 2) * 30;
                 butterfly.style.left = x + 'px';
                 butterfly.style.top = y + 'px';
-                butterfly.style.transform = `rotate(${angle * 30}deg) scale(${1 + Math.sin(angle * 5) * 0.2})`;
+                butterfly.style.transform = `rotate(${angle * 40}deg) scale(${1 + Math.sin(angle * 8) * 0.3})`;
 
-                if (angle < Math.PI * 6) {
+                if (angle < Math.PI * 8) {
                     requestAnimationFrame(animate);
                 } else {
-                    butterfly.remove();
+                    butterfly.style.transition = 'all 2s ease-out';
+                    butterfly.style.opacity = '0';
+                    butterfly.style.transform = 'scale(0) rotate(720deg)';
+                    setTimeout(() => butterfly.remove(), 2000);
                 }
             }
 
@@ -424,23 +525,24 @@
         }
 
         function createConfetti() {
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 50; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
                     confetti.style.left = Math.random() * window.innerWidth + 'px';
-                    confetti.style.top = '-10px';
-                    confetti.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
-                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
-                    confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
+                    confetti.style.top = '-20px';
+                    confetti.style.background = `hsl(${Math.random() * 360}, 100%, ${60 + Math.random() * 20}%)`;
+                    confetti.style.animationDelay = Math.random() * 0.8 + 's';
+                    confetti.style.animationDuration = (3 + Math.random() * 2) + 's';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
                     document.body.appendChild(confetti);
                     
-                    setTimeout(() => confetti.remove(), 5000);
-                }, i * 50);
+                    setTimeout(() => confetti.remove(), 7000);
+                }, i * 40);
             }
         }
 
-        // Mouse glow effect
+        // Enhanced mouse glow effect
         const glow = document.createElement('div');
         glow.className = 'glow';
         document.body.appendChild(glow);
@@ -449,22 +551,34 @@
             glow.style.left = e.pageX + 'px';
             glow.style.top = e.pageY + 'px';
             
-            if (Math.random() < 0.15) {
+            if (Math.random() < 0.2) {
                 createSparkle(e.pageX, e.pageY);
             }
         });
 
-        // Click effects
+        // Enhanced click effects
         document.addEventListener('click', (e) => {
             createSparkle(e.pageX, e.pageY);
             createMusicNote();
             
-            if (Math.random() < 0.7) {
+            if (Math.random() < 0.8) {
                 createButterfly();
+            }
+            
+            // Radial sparkle burst
+            for (let i = 0; i < 12; i++) {
+                const angle = (Math.PI * 2 * i) / 12;
+                const distance = 60 + Math.random() * 40;
+                const x = e.pageX + Math.cos(angle) * distance;
+                const y = e.pageY + Math.sin(angle) * distance;
+                
+                setTimeout(() => {
+                    createSparkle(x, y);
+                }, i * 50);
             }
         });
 
-        // Heart click effect
+        // Enhanced heart click effect
         const mainHeart = document.querySelector('.heart');
         let clickCount = 0;
 
@@ -474,10 +588,10 @@
 
             // Explosion effect
             mainHeart.classList.add('explode');
-            setTimeout(() => mainHeart.classList.remove('explode'), 800);
+            setTimeout(() => mainHeart.classList.remove('explode'), 1000);
 
-            // Mini hearts explosion
-            const heartCount = 25 + clickCount * 5;
+            // Massive mini hearts explosion with trails
+            const heartCount = 35 + clickCount * 8;
             for (let i = 0; i < heartCount; i++) {
                 setTimeout(() => {
                     const miniHeart = document.createElement('div');
@@ -490,51 +604,61 @@
                     miniHeart.style.top = (rect.top + rect.height / 2) + 'px';
                     
                     const angle = (Math.random() * Math.PI * 2);
-                    const distance = 120 + Math.random() * 180;
+                    const distance = 150 + Math.random() * 250;
                     const tx = Math.cos(angle) * distance;
                     const ty = Math.sin(angle) * distance;
-                    const rotation = Math.random() * 720 - 360;
+                    const rotation = Math.random() * 1080 - 540;
                     
                     miniHeart.style.setProperty('--tx', `${tx}px`);
                     miniHeart.style.setProperty('--ty', `${ty}px`);
                     miniHeart.style.setProperty('--rot', `${rotation}deg`);
                     
-                    miniHeart.style.animation = 'miniHeartFloat 1.2s cubic-bezier(.36,.07,.19,.97) forwards';
+                    miniHeart.style.animation = `miniHeartFloat ${1 + Math.random() * 0.5}s cubic-bezier(.36,.07,.19,.97) forwards`;
                     
                     document.body.appendChild(miniHeart);
                     
-                    setTimeout(() => miniHeart.remove(), 1200);
-                }, i * 15);
+                    setTimeout(() => miniHeart.remove(), 1500);
+                }, i * 12);
             }
 
-            // Sparkles
-            for (let i = 0; i < 20; i++) {
+            // Enhanced sparkles explosion
+            for (let i = 0; i < 30; i++) {
                 setTimeout(() => {
                     const rect = mainHeart.getBoundingClientRect();
                     createSparkle(
-                        rect.left + rect.width / 2 + (Math.random() - 0.5) * 200,
-                        rect.top + rect.height / 2 + (Math.random() - 0.5) * 200
+                        rect.left + rect.width / 2 + (Math.random() - 0.5) * 300,
+                        rect.top + rect.height / 2 + (Math.random() - 0.5) * 300
                     );
-                }, i * 40);
+                }, i * 30);
             }
 
-            createButterfly();
-            createMusicNote();
+            // Multiple butterflies
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => createButterfly(), i * 300);
+            }
             
-            if (clickCount % 3 === 0) {
+            // Multiple music notes
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => createMusicNote(), i * 200);
+            }
+            
+            if (clickCount % 2 === 0) {
                 createConfetti();
             }
         });
 
         // Initialize animations
-        setInterval(createFloatingHearts, 300);
-        setInterval(createMusicNote, 6000);
-        setInterval(createButterfly, 10000);
+        setInterval(createFloatingHearts, 250);
+        setInterval(createMusicNote, 5000);
+        setInterval(createButterfly, 8000);
 
-        // Initial effects
+        // Initial effects cascade
         setTimeout(createConfetti, 1000);
         setTimeout(createButterfly, 2000);
-        setTimeout(createButterfly, 4000);
+        setTimeout(createButterfly, 3500);
+        setTimeout(createButterfly, 5000);
+        setTimeout(createMusicNote, 2500);
+        setTimeout(createMusicNote, 4500);
     </script>
 </body>
 </html>
